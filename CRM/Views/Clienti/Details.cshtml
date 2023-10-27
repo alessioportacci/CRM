@@ -1,0 +1,130 @@
+﻿@model CRM.Models.DbModels.Clienti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="content-box">
+
+    <h2> @Html.DisplayFor(model => model.Nome)</h2>
+    <hr />
+
+    <div class="row">
+
+        <h5> Generalità </h5>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Nome)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.DataNascita)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.DataNascita)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Genere)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Genere)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Localita)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Localita)
+            </div>
+        </div>
+
+
+        <hr class="mt-4" />
+
+        <h5> Recapiti </h5>
+
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Email)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Telefono)
+            </div>
+        </div>
+
+
+        <hr class="mt-4" />
+
+        <h5> Altro </h5>
+
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.DataRegistrazione)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.DataRegistrazione)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                Azienda di riferimento
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Aziende.Nome)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Note)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Note)
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="mt-4" />
+
+    <p>
+        @Html.ActionLink("Modifica", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Torna alla lista", "Index")
+    </p>
+
+</div>
+
+@{ Html.RenderAction("Appuntamenti", Model.Id); }

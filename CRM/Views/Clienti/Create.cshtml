@@ -1,0 +1,95 @@
+﻿@model CRM.Models.DbModels.Clienti
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content-box">
+
+
+    <h2>Nuovo cliente</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.DataRegistrazione, new { @value = DateTime.Now })
+        @Html.HiddenFor(model => model.FkAzienda, new { @value = Int32.Parse(Session["IdAzienda"].ToString()) })
+
+
+
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.DataRegistrazione)
+            @Html.HiddenFor(model => model.FkAzienda)
+
+            <h5> Generalità </h5>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.DataNascita, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.DataNascita, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                @Html.ValidationMessageFor(model => model.DataNascita, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.Genere, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Genere, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Genere, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.Localita, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Localita, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Localita, "", new { @class = "text-danger" })
+            </div>
+
+            <hr class="mt-4" />
+
+            <h5> Recapiti </h5>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-12 col-md-6">
+                @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+            </div>
+
+            <hr class="mt-4" />
+
+            <h5> Altro </h5>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <hr class="mt-4" />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Modifica" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>

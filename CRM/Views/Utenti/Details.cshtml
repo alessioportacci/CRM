@@ -1,0 +1,90 @@
+﻿@model CRM.Models.DbModels.Utenti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Utenti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Propic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Propic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastOnline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastOnline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Blind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Blind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FkAzienda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FkAzienda)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

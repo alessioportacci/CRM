@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CRM.Models.DbModels.Clienti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-box">
+
+    <div class="d-flex align-items-center">
+        <h2>Clienti</h2>
+        <div class="mx-3">
+            <a href="@Url.Action("Create")">
+                <i class="fa-solid fa-plus btn btn-primary"></i>
+            </a>
+        </div>
+    </div>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Localita)
+                </th>
+                <th>
+                    Azienda
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aziende.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localita)
+                    </td>
+                    <td>
+                        <a href="@Url.Action( "Edit", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-pencil"></i></a>
+                        <a href="@Url.Action( "Details", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/MyScripts/LoadDataTable.js"></script>
+    <script>
+        LoadDataTable(5)
+    </script>
+}

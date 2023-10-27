@@ -1,0 +1,209 @@
+﻿using CRM.Models;
+using CRM.Models.DbModels;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Helpers;
+using System.Web.Mvc;
+using System.Web.UI;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace CRM.Controllers
+{
+    [Authorize]
+    public class AppuntamentiController : Controller
+    {
+        ModelDbContext db = new ModelDbContext();
+
+        #region CALENDARIO
+
+        public ActionResult Calendar()
+        {
+            return View();
+        }
+
+        public JsonResult LoadCalendar()
+        /* Metodo per caricare gli appuntamenti del calendario alla sua apertura */
+        {
+            //Mi prendo la lista degli appuntamenti disponibili per l'utente loggato
+            int idUtente = Int32.Parse(Session["IdUtente"].ToString());
+            List<Appuntamenti> AppuntamentiDisponibili = db.Appuntamenti
+                                        .Where(a => a.FkUtente == idUtente
+                                                 || a.VisibilitaGlobale).ToList();
+
+            //Li carico dentro "appuntamenti" chiamando la funzione LoadAppuntamentiCalendario
+            List<AppuntamentiCalendarioModel> appuntamenti = new List<AppuntamentiCalendarioModel>();
+            foreach (Appuntamenti item in AppuntamentiDisponibili)
+                appuntamenti.Add(LoadAppuntamentoPerCalendario(item));
+
+            return Json(appuntamenti, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public PartialViewResult Create()
+        {
+            int idUtente = Int32.Parse(Session["IdUtente"].ToString());
+
+            //Mi carico i clienti da usare nel modale della creazione
+            List<SelectListItem> Clienti = new List<SelectListItem>();
+            foreach (Clienti cliente in db.Utenti.Find(idUtente).Aziende.Clienti)
+                Clienti.Add(new SelectListItem { Text = cliente.Nome, Value = cliente.Id.ToString() });
+            ViewBag.Clienti = Clienti;
+
+            //Mi carico le tipologie da usare nel modale della creazione
+            List<SelectListItem> Tipologie = new List<SelectListItem>();
+            foreach (AppuntamentiTipologia tipologia in db.AppuntamentiTipologia.ToList())
+                Tipologie.Add(new SelectListItem { Text = tipologia.Tipologia, Value = tipologia.id.ToString() });
+            ViewBag.Tipologie = Tipologie;
+
+            return PartialView();
+        }
+
+        [HttpPost]
+        public JsonResult Create(Appuntamenti appuntamento)
+        {
+            try
+            {
+                appuntamento.DataAggiunta = DateTime.Now;
+                appuntamento.FkUtente = Int32.Parse(Session["IdUtente"].ToString());
+                appuntamento.Concluso = false;
+
+                if(ModelState.IsValid)
+                {
+                    db.Appuntamenti.Add(appuntamento);
+                    db.SaveChanges();
+
+                    appuntamento.Clienti = db.Clienti.Find(appuntamento.FkCliente);
+                    appuntamento.AppuntamentiTipologia = db.AppuntamentiTipologia.Find(appuntamento.FkTipologia);
+
+                    AppuntamentiCalendarioModel appuntamentoJSON = LoadAppuntamentoPerCalendario(appuntamento);
+
+                    return Json(appuntamentoJSON, JsonRequestBehavior.AllowGet);
+                }
+
+
+            }
+            catch { }
+
+            return Json("", JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public AppuntamentiCalendarioModel LoadAppuntamentoPerCalendario(Appuntamenti appuntamento)
+        /* Medoto per trasformare un Appuntamento in un AppuntamentiCalendarioModel; è necessario per evitare le
+         * dipendenze circolari dovute dal lazy loading */
+        {
+            return new AppuntamentiCalendarioModel
+            {
+                id = appuntamento.Id,
+                NomeCliente = appuntamento.Clienti.Nome,
+                Tipologia = appuntamento.AppuntamentiTipologia.Tipologia,
+                Data = appuntamento.Date.ToString("yyyy-MM-dd"),
+                Inizio = appuntamento.Date.Add(appuntamento.OraInizio).ToString("yyyy-MM-ddTHH:mm"),
+                Fine = appuntamento.Date.Add(appuntamento.OraFine).ToString("yyyy-MM-ddTHH:mm"),
+                Descrizione = appuntamento.Descrizione,
+                Note = appuntamento.Note,
+                Concluso = appuntamento.Concluso,
+                Colore = appuntamento.AppuntamentiTipologia.Colore
+            };
+        }
+
+
+        public JsonResult UpdateDataAppuntamento(int Id, DateTime Date)
+        {
+            try
+            {
+                Appuntamenti appuntamento = db.Appuntamenti.Find(Id);
+
+                TimeSpan differenza = appuntamento.OraFine - appuntamento.OraInizio;
+
+                appuntamento.Date = Date.Date;
+                appuntamento.OraInizio = Date.AddHours(-2).TimeOfDay;
+                appuntamento.OraFine = Date.AddHours(-2).TimeOfDay + differenza;
+                db.Entry(appuntamento).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return Json(appuntamento.ToString(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) 
+            {
+              return Json(ex, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public JsonResult LoadAppuntamentoDetails(int Id)
+        {
+            Appuntamenti appuntamento = new Appuntamenti();
+            try
+            {
+                appuntamento = db.Appuntamenti.Find(Id);
+            }
+            catch { }
+            return Json(LoadAppuntamentoPerCalendario(appuntamento), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult EditNoteAppuntamento(int Id, string note)
+        {
+            Appuntamenti appuntamento = new Appuntamenti();
+            try
+            {
+                appuntamento = db.Appuntamenti.Find(Id);
+                appuntamento.Note = note;
+                db.Entry(appuntamento).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch { }
+            return Json(LoadAppuntamentoPerCalendario(appuntamento), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+
+        public ActionResult Edit(int id)
+        {
+            int idUtente = Int32.Parse(Session["IdUtente"].ToString());
+
+            //Mi carico i clienti da usare nel modale della creazione
+            List<SelectListItem> Clienti = new List<SelectListItem>();
+            foreach (Clienti cliente in db.Utenti.Find(idUtente).Aziende.Clienti)
+                Clienti.Add(new SelectListItem { Text = cliente.Nome, Value = cliente.Id.ToString() });
+            ViewBag.Clienti = Clienti;
+
+            //Mi carico le tipologie da usare nel modale della creazione
+            List<SelectListItem> Tipologie = new List<SelectListItem>();
+            foreach (AppuntamentiTipologia tipologia in db.AppuntamentiTipologia.ToList())
+                Tipologie.Add(new SelectListItem { Text = tipologia.Tipologia, Value = tipologia.id.ToString() });
+            ViewBag.Tipologie = Tipologie;
+
+
+            return View(db.Appuntamenti.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Appuntamenti appuntamento)
+        {
+            try
+            {
+                db.Entry(appuntamento).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Calendar");
+            }
+            catch { }
+            return View();
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            db.Appuntamenti.Remove(db.Appuntamenti.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Calendar");
+        }
+
+    }
+}

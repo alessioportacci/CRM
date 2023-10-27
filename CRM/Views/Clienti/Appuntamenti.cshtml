@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CRM.Models.DbModels.Appuntamenti>
+
+@{
+    ViewBag.Title = "Appuntamenti";
+}
+
+<div class="content-box mb-3 mt-4 ">
+    <h2>Appuntamenti</h2>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="p-1">
+            <div class="content-box">
+                <h5> @item.AppuntamentiTipologia.Tipologia.ToUpper() </h5>
+
+                <div class="row rounded-pill d-flex align-items-center py-1" style="background-color: @item.AppuntamentiTipologia.Colore3">
+                    <div class="col-4">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center border-2"
+                             style="background-color: @item.AppuntamentiTipologia.Colore2; width: 55px; height: 55px;">
+                            <div style="color: @item.AppuntamentiTipologia.Colore" class="p-2">
+                                <h5 class="m-0 text-center">@item.Date.Day </h5>
+                                <div> @item.Date.ToString("MMM") </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <p class="m-0 text-truncate"> @item.Descrizione</p>
+                        <p class="text-secondary m-0 mt-1">@item.OraInizio.ToString("hh\\:mm") - @item.OraFine.ToString("hh\\:mm") </p>
+                    </div>
+                </div>
+
+                <p class="mt-2 mb-1">
+                    Registrato da:
+                    <span class="fw-bold"> @item.Utenti.Nome</span>
+                </p>
+
+                <p class="mt-0">
+                    In data:
+                    <span class="fw-bold"> @item.DataAggiunta.ToString("dd/MM/yyyy")</span>
+                </p>
+
+                <div class="d-flex flex-row-reverse">
+                    <a href="@Url.Action("Edit", "Appuntamenti", new { area ="", id = item.Id})" 
+                       class="btn" style="background-color: @item.AppuntamentiTipologia.Colore2; border: 2px solid @item.AppuntamentiTipologia.Colore"> 
+                        Vai all'appuntamento
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>

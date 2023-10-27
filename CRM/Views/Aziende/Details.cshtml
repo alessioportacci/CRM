@@ -1,0 +1,113 @@
+﻿@model CRM.Models.DbModels.Aziende
+
+@{
+    ViewBag.Title = "AziendeDetails";
+}
+
+<div class="content-box">
+
+
+    <h2> @Html.DisplayFor(model => model.Nome)</h2>
+    <hr />
+
+    <div class="row">
+
+        <h5> Informazioni </h5>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Nome)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Nome)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.PIVA)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.PIVA)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Telefono)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Telefono)
+            </div>
+        </div>
+
+
+        <hr class="mt-4" />
+
+        <h5> Indirizzo </h5>
+
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Regione)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Regione)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Provincia)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Provincia)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Citta)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Citta)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.CAP)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.CAP)
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="fw-bold">
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.Indirizzo)
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="mt-4"/>
+
+    <p>
+        @Html.ActionLink("Modifica", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Torna alla lista", "Index")
+    </p>
+
+</div>
+

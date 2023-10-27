@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+}
+
+<div class="content-box">
+    <div id="calendario-spinner" class=" d-flex align-items-center justify-content-center mt-5 pt-5">
+
+        <div class="spinner-border text-dark" role="status">
+            <span class="visually-hidden">Caricamento...</span>
+        </div>
+
+    </div>
+
+    <main class="">
+        <div id='calendar' class=""></div>
+    </main>
+
+    <!-- Modale Aggiunta appuntamenti -->
+    <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AggiungiTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @{ Html.RenderAction("Create"); }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="Aggiungi" onclick="AddEvent()">Aggiungi Evento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Visualizzazione appuntamenti -->
+    <div class="modal fade" id="Modal-vis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Modal-vis-titolo"> </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Data -->
+                    <i class="bi bi-pencil-fill"></i>
+                    <p class="fw-bold">Data</p>
+                    <p id="Modal-vis-data"></p>
+                    <hr />
+                    <p class="fw-bold">Descrizione</p>
+                    <p id="Modal-vis-descrizione"></p>
+                    <hr />
+                    <p class="fw-bold">Note</p>
+                    <textarea class="form-control" rows="3" id="Modal-vis-note"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <a id="Modal-vis-modifica-appuntamento" href="..." class="btn btn-secondary">Modifica appuntamento</a>
+                    <button type="button" class="btn btn-primary" id="Modal-vis-modifica" onclick="">Modifica Note</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script src='~/Scripts/FullCalendar/dist/index.global.min.js'></script>
+    <script src="~/Scripts/MyScripts/AppuntamentiCalendar.js"></script>
+}

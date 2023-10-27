@@ -1,0 +1,65 @@
+﻿@model CRM.Models.DbModels.Appuntamenti
+    
+
+
+<div class="form-horizontal">
+
+    @Html.LabelFor(model => model.FkCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.FkCliente, new SelectList(ViewBag.Clienti, "Value", "Text"), "Seleziona un cliente", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+        @Html.ValidationMessageFor(model => model.FkCliente, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control d-none", Type = "Date", ReadOnly = "true", } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OraInizio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OraInizio, new { htmlAttributes = new { @class = "form-control", Type = "time", @Value = "09:00", @Step = "600"} })
+            @Html.ValidationMessageFor(model => model.OraInizio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OraFine, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.OraFine, new { htmlAttributes = new { @class = "form-control", Type = "time", @Value = "10:00" } })
+            @Html.ValidationMessageFor(model => model.OraFine, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.LabelFor(model => model.FkTipologia, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.FkTipologia, new SelectList(ViewBag.Tipologie, "Value", "Text"), "Seleziona una tipologia", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+        @Html.ValidationMessageFor(model => model.FkTipologia, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", type = "textarea" } })
+            @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VisibilitaGlobale, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.VisibilitaGlobale)
+                @Html.ValidationMessageFor(model => model.VisibilitaGlobale, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+</div>

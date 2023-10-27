@@ -1,0 +1,94 @@
+﻿@model CRM.Models.DbModels.Appuntamenti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="content-box">
+    <h4>@Model.AppuntamentiTipologia.Tipologia del @Model.Date.Date.ToString("dd/MM/yyyy") con @Model.Clienti.Nome </h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Aggiunto da
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utenti.Nome)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.FkTipologia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAggiunta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataAggiunta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OraInizio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OraInizio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OraFine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OraFine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Concluso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Concluso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisibilitaGlobale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisibilitaGlobale)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    *@
+</p>
