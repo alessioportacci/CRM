@@ -4,10 +4,6 @@
     ViewBag.Title = "Appuntamenti";
 }
 
-<div class="content-box mb-3 mt-4 ">
-    <h2>Appuntamenti</h2>
-</div>
-
 <div class="row row-cols-1 row-cols-md-3">
 
     @foreach (var item in Model)
@@ -34,18 +30,23 @@
                 </div>
 
                 <p class="mt-2 mb-1">
+                    Appuntamento per:
+                    <a class="fw-bold" href="@Url.Action("Details", "Clienti", new { area = "", id = item.Clienti.Id })"> @item.Clienti.Nome</a>
+                </p>
+
+                <p class="mb-1">
                     Registrato da:
-                    <span class="fw-bold"> @item.Utenti.Nome</span>
+                    <a class="fw-bold" href="@Url.Action("Details", "Utenti", new { area = "", id = item.Utenti.Id })"> @item.Utenti.Nome</a>
                 </p>
 
                 <p class="mt-0">
-                    In data:
-                    <span class="fw-bold"> @item.DataAggiunta.ToString("dd/MM/yyyy")</span>
+                    Per il:
+                    <span class="fw-bold"> @item.Date.ToString("dd/MM/yyyy")</span>
                 </p>
 
                 <div class="d-flex flex-row-reverse">
-                    <a href="@Url.Action("Edit", "Appuntamenti", new { area ="", id = item.Id})" 
-                       class="btn" style="background-color: @item.AppuntamentiTipologia.Colore2; border: 2px solid @item.AppuntamentiTipologia.Colore"> 
+                    <a href="@Url.Action("Edit", "Appuntamenti", new { area ="", id = item.Id})"
+                       class="btn" style="background-color: @item.AppuntamentiTipologia.Colore2; border: 2px solid @item.AppuntamentiTipologia.Colore">
                         Vai all'appuntamento
                     </a>
                 </div>

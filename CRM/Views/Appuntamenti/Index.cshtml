@@ -4,90 +4,75 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="content-box">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FkCliente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FkUtente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FkTipologia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataAggiunta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OraInizio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OraFine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Concluso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VisibilitaGlobale)
-        </th>
-        <th></th>
-    </tr>
+    <div class="d-flex align-items-center">
+        <h2>Appuntamenti</h2>
+        <div class="mx-3">
+            <a href="@Url.Action("CreateAppuntamento")">
+                <i class="fa-solid fa-plus btn btn-crm"></i>
+            </a>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FkCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FkUtente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FkTipologia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataAggiunta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OraInizio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OraFine)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrizione)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Concluso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VisibilitaGlobale)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Tipologia
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    Orario
+                </th>
+                <th>
+                    Creatore
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clienti.Nome)
+                    </td>
+                    <td style="background-color: @item.AppuntamentiTipologia.Colore2">
+                        @Html.DisplayFor(modelItem => item.AppuntamentiTipologia.Tipologia)
+                    </td>
+                    <td>
+                        @item.Date.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.OraInizio.ToString("hh\\:mm") - @item.OraFine.ToString("hh\\:mm")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Utenti.Nome)
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action( "Edit", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-pencil"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/MyScripts/LoadDataTable.js"></script>
+    <script>
+        LoadDataTable([5 ])
+    </script>
 }
-
-</table>

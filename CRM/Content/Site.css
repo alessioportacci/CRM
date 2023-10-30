@@ -46,15 +46,51 @@ body {
     background-size: cover;
 }
 
-.content-box 
-{
+.content-box {
     background-color: white;
-    box-shadow: -3px 9px 14px 3px rgba(0,0,0,0.43);
-    padding:15px;
-    border-radius:10px
+    /*box-shadow: -3px 9px 14px 3px rgba(0,0,0,0.43);*/
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.home-img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.content-box:hover > .home-img
+{
+    transform: scale(1.1, 1.1)
 }
 
 .navbar-fixed-top.scrolled {
     background-color: #fff !important;
     transition: background-color 200ms linear;
 }
+
+/*FullCalendar*/
+
+.fc-button-primary {
+    background-color: #086972 !important;
+}
+
+.fc-col-header-cell-cushion, .fc-daygrid-day-number, .fc-list-day-text, .fc-list-day-side-text {
+    color: #086972 !important
+}
+
+.btn-crm {
+    color: white;
+    background-color: #086972;
+    transition: transform 0.2s ease-in-out;
+}
+
+    .btn-crm:hover {
+        color: white;
+        background-color: #086972;
+        transform: scale(1.1, 1.1)
+    }
+
+.bg-crm {
+    background-color:#086972 
+}
+

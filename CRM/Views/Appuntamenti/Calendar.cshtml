@@ -28,7 +28,7 @@
                     @{ Html.RenderAction("Create"); }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="Aggiungi" onclick="AddEvent()">Aggiungi Evento</button>
+                    <button type="button" class="btn btn-crm" id="Aggiungi" onclick="AddEvent()">Aggiungi Evento</button>
                 </div>
             </div>
         </div>
@@ -37,9 +37,10 @@
     <!-- Modale Visualizzazione appuntamenti -->
     <div class="modal fade" id="Modal-vis" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content" id="Modal-vis-content">
+                <div class="modal-header" id="Modal-vis-header">
                     <h5 class="modal-title" id="Modal-vis-titolo"> </h5>
+                    <a id="Modal-vis-link"> </a>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -54,9 +55,9 @@
                     <p class="fw-bold">Note</p>
                     <textarea class="form-control" rows="3" id="Modal-vis-note"></textarea>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" id="Modal-vis-footer">
                     <a id="Modal-vis-modifica-appuntamento" href="..." class="btn btn-secondary">Modifica appuntamento</a>
-                    <button type="button" class="btn btn-primary" id="Modal-vis-modifica" onclick="">Modifica Note</button>
+                    <button type="button" class="btn btn-crm" id="Modal-vis-modifica" onclick="">Modifica Note</button>
                 </div>
             </div>
         </div>

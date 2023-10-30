@@ -7,8 +7,10 @@
 
 <div class="content-box">
 
-    <h2> @Html.DisplayFor(model => model.Nome)</h2>
-    <hr />
+    <div class="d-flex align-items-center">
+        <h2 class="d-inline-block">@Model.Nome</h2>
+        <a href="@Url.Action( "Edit", new { id = Model.Id })" class="text-dark"> <i class="fa-solid fa-pencil m-2"></i></a>
+    </div>
 
     <div class="row">
 
@@ -118,13 +120,10 @@
 
     </div>
 
-    <hr class="mt-4" />
-
-    <p>
-        @Html.ActionLink("Modifica", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Torna alla lista", "Index")
-    </p>
-
 </div>
 
-@{ Html.RenderAction("Appuntamenti", Model.Id); }
+<div class="content-box mb-3 mt-4 ">
+    <h2>Appuntamenti registrati per @Model.Nome:</h2>
+</div>
+
+@{ Html.RenderAction("AppuntamentiPartial", "Appuntamenti", new { idCliente = Model.Id, idUtente = 0 }); }

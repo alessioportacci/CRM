@@ -107,7 +107,9 @@ namespace CRM.Controllers
                 Descrizione = appuntamento.Descrizione,
                 Note = appuntamento.Note,
                 Concluso = appuntamento.Concluso,
-                Colore = appuntamento.AppuntamentiTipologia.Colore
+                Colore = appuntamento.AppuntamentiTipologia.Colore,
+                Colore2 = appuntamento.AppuntamentiTipologia.Colore2,
+                Colore3 = appuntamento.AppuntamentiTipologia.Colore3,
             };
         }
 
@@ -164,6 +166,44 @@ namespace CRM.Controllers
         #endregion
 
 
+        public ActionResult Index()
+        {
+            return View(db.Appuntamenti.ToList());
+        }
+
+        public ActionResult CreateAppuntamento()
+        {
+            int idUtente = Int32.Parse(Session["IdUtente"].ToString());
+            //Mi carico i clienti da usare nel modale della creazione
+            List<SelectListItem> Clienti = new List<SelectListItem>();
+            foreach (Clienti cliente in db.Utenti.Find(idUtente).Aziende.Clienti)
+                Clienti.Add(new SelectListItem { Text = cliente.Nome, Value = cliente.Id.ToString() });
+            ViewBag.Clienti = Clienti;
+
+            //Mi carico le tipologie da usare nel modale della creazione
+            List<SelectListItem> Tipologie = new List<SelectListItem>();
+            foreach (AppuntamentiTipologia tipologia in db.AppuntamentiTipologia.ToList())
+                Tipologie.Add(new SelectListItem { Text = tipologia.Tipologia, Value = tipologia.id.ToString() });
+            ViewBag.Tipologie = Tipologie;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateAppuntamento(Appuntamenti appuntamento)
+        {
+            appuntamento.DataAggiunta = DateTime.Now;
+            appuntamento.FkUtente = Int32.Parse(Session["IdUtente"].ToString());
+            try
+            {
+                db.Appuntamenti.Add(appuntamento);
+                db.SaveChanges();
+            }
+            catch { }
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Edit(int id)
         {
             int idUtente = Int32.Parse(Session["IdUtente"].ToString());
@@ -204,6 +244,16 @@ namespace CRM.Controllers
             db.SaveChanges();
             return RedirectToAction("Calendar");
         }
+
+
+        public PartialViewResult AppuntamentiPartial(int idCliente, int idUtente)
+        //Metodo che restituisce una partial degli appuntamenti filtrata per cliente o utente che l'ha creato
+        {
+            if(idCliente != 0)
+                return PartialView(db.Appuntamenti.Where(c => c.FkCliente == idCliente).OrderByDescending(a => a.Date));
+            return PartialView(db.Appuntamenti.Where(c => c.FkUtente == idUtente).OrderByDescending(a => a.Date));
+        }
+
 
     }
 }

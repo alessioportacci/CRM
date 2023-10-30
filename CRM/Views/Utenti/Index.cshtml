@@ -4,78 +4,83 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="content-box">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Propic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastOnline)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Blind)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FkAzienda)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Propic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastOnline)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Blind)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FkAzienda)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    <div class="d-flex align-items-center">
+        <h2>Utenti</h2>
+        <div class="mx-3">
+            <a href="@Url.Action("Create")">
+                <i class="fa-solid fa-plus btn btn-crm"></i>
+            </a>
+        </div>
+    </div>
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastOnline)
+                </th>
+                <th>
+                    Azienda
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/Imgs/Propic/@item.Propic" height="30" width="30" class="rounded-circle object-fit-cover" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastOnline)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aziende.Nome)
+                    </td>
+                    <td>
+                        <a href="@Url.Action( "Edit", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-pencil"></i></a>
+                        <a href="@Url.Action( "Details", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@section scripts
+{
+        <script src="~/Scripts/MyScripts/LoadDataTable.js"></script>
+        <script>
+            LoadDataTable([0, 7])
+        </script>
 }
-
-</table>

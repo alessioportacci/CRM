@@ -3,5 +3,78 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div ckass="container">
+    <div class="row">
+
+        <!--Icone -->
+        <div class="col-12 col-md-6 order-2 order-md-1">
+
+            <!-- Visualizza -->
+            <div class="row row-cols-1 row-cols-md-2">
+
+                <!-- Appuntamento -->
+                <div class="mb-2">
+                    <a href="@Url.Action("Index", "Appuntamenti")" class="text-black text-decoration-none">
+                        <div class="content-box">
+                            <h4 class="text-truncate"> Appuntamenti </h4>
+                            <img class="home-img" src="~/Content/Imgs/Svgs/Appuntamenti.svg" />
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Cliente -->
+                <div class="mb-2">
+                    <a href="@Url.Action("Index", "Clienti")" class="text-black text-decoration-none">
+                        <div class="content-box">
+                            <h4 class="text-truncate"> Clienti </h4>
+                            <img  class="home-img" src="~/Content/Imgs/Svgs/Clienti.svg" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Aggiungi -->
+            <div class="row row-cols-1 row-cols-md-2">
+
+                <!-- Appuntamento -->
+                <div class="mb-2">
+                    <a href="@Url.Action("CreateAppuntamento", "Appuntamenti")" class="text-black text-decoration-none">
+                        <div class="content-box">
+                            <h4 class="text-truncate"> Aggiungi appuntamento</h4>
+                            <img class="home-img" src="~/Content/Imgs/Svgs/AggiungiAppuntamento.svg" />
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Cliente -->
+                <div  class="mb-2">
+                    <a href="@Url.Action("Create", "Clienti")" class="text-black text-decoration-none">
+                        <div class="content-box">
+                            <h4 class="text-truncate">Aggiungi Cliente</h4>
+                            <img class="home-img" src="~/Content/Imgs/Svgs/AggiungiCliente.svg" />
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Calendario -->
+        <div class="col-12 col-md-6 h-100  order-1 order-md-2 mb-2">
+
+            <a href="@Url.Action("Calendar", "Appuntamenti")" class="text-black text-decoration-none">
+                <div class="content-box">
+                    <h2> Visualizza calendario</h2>
+                    <img class="home-img" src="~/Content/Imgs/Svgs/Calendario.svg" />
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>
+
+
 

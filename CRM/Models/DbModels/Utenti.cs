@@ -5,6 +5,7 @@ namespace CRM.Models.DbModels
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web;
 
     [Table("Utenti")]
     public partial class Utenti
@@ -40,6 +41,9 @@ namespace CRM.Models.DbModels
 
         [StringLength(100)]
         public string Propic { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase FotoFile { get; set; }
 
         public DateTime? LastOnline { get; set; }
 

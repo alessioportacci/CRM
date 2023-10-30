@@ -11,7 +11,7 @@ function LoadDataTable(iconsColumn)
             //Traduce il testo a schermo indicato
             "language":
             {
-                "lengthMenu": "_MENU_   elementi per pagina",
+                "lengthMenu": "_MENU_  per pagina",
                 "zeroRecords": "Nessun elemento trovato",
                 "info": "Pagina _PAGE_ di _PAGES_",
                 "infoEmpty": "Nessun elemento disponibile",
@@ -29,7 +29,7 @@ function LoadDataTable(iconsColumn)
             //Applica delle proprietà specifiche ad alcune colonne
             columnDefs:
             [{
-                'targets': [iconsColumn], //Lista delle colonne prese in causa
+                'targets': iconsColumn, //Lista delle colonne prese in causa
                 'orderable': false,       //Disabilito l'ordinamento
             }],
     });

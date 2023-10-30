@@ -38,6 +38,8 @@ namespace CRM.Controllers
                 //Metto nella sesisone l'id (può essere utile) ed aggiorno l'ultimo accesso
                 Session["IdUtente"] = Utente.Id;
                 Session["IdAzienda"] = Utente.FkAzienda;
+                Session["Img"] = Utente.Propic;
+
 
                 Utente.LastOnline = DateTime.Now;
                 db.Entry(Utente).State = EntityState.Modified;

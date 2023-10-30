@@ -6,7 +6,7 @@
 
     @Html.LabelFor(model => model.FkCliente, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownListFor(model => model.FkCliente, new SelectList(ViewBag.Clienti, "Value", "Text"), "Seleziona un cliente", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+        @Html.DropDownListFor(model => model.FkCliente, new SelectList(ViewBag.Clienti, "Value", "Text"), "Seleziona un cliente", new { @class = "form-select" })
         @Html.ValidationMessageFor(model => model.FkCliente, "", new { @class = "text-danger" })
     </div>
 
@@ -32,7 +32,7 @@
 
     @Html.LabelFor(model => model.FkTipologia, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownListFor(model => model.FkTipologia, new SelectList(ViewBag.Tipologie, "Value", "Text"), "Seleziona una tipologia", new { htmlAttributes = new { @class = "form-control dropdown-menu" } })
+        @Html.DropDownListFor(model => model.FkTipologia, new SelectList(ViewBag.Tipologie, "Value", "Text"), "Seleziona una tipologia", new { @class = "form-select" })
         @Html.ValidationMessageFor(model => model.FkTipologia, "", new { @class = "text-danger" })
     </div>
 

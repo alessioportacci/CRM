@@ -26,13 +26,6 @@ namespace CRM.Controllers
             return View("Index", db.Clienti.ToList());
         }
 
-
-        public PartialViewResult Appuntamenti(int id)
-        {
-            return PartialView(db.Appuntamenti.Where(c => c.FkCliente == id));
-        }
-
-
         public ActionResult Details(int id)
         {
             return View(db.Clienti.Find(id));
@@ -47,6 +40,9 @@ namespace CRM.Controllers
         [HttpPost]
         public ActionResult Create(Clienti cliente)
         {
+            #if (!DEBUG)
+            #endif
+
             try
             {
                 int idAzienda = Int32.Parse(Session["IdAzienda"].ToString());

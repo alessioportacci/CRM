@@ -1,12 +1,12 @@
 ﻿@model CRM.Models.DbModels.Appuntamenti
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "CreateAppuntamento";
 }
 
 <div class="content-box">
 
-    <h2>Modifica appuntamento</h2>
+    <h2>Nuovo appuntamento</h2>
     <hr />
 
 
@@ -16,11 +16,6 @@
 
         <div class="row">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.FkUtente)
-            @Html.HiddenFor(model => model.DataAggiunta)
-            @Html.HiddenFor(model => model.VisibilitaGlobale)
-
 
             <h5> Cliente e tipologia </h5>
 
@@ -68,10 +63,10 @@
             </div>
 
             <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.Concluso, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.VisibilitaGlobale, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Concluso, new { htmlAttributes = new { role = "switch" } })
-                    @Html.ValidationMessageFor(model => model.Concluso, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.VisibilitaGlobale)
+                    @Html.ValidationMessageFor(model => model.VisibilitaGlobale, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -85,7 +80,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Modifica" class="btn btn-crm" />
+                    <input type="submit" value="Aggiungi" class="btn btn-crm" />
                 </div>
             </div>
         </div>

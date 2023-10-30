@@ -93,11 +93,23 @@ function LoadDetails(IdAppuntamento)
                 console.log(appuntamento)
 
                 $('#Modal-vis-titolo').text(appuntamento.Tipologia + " con " + appuntamento.NomeCliente)
+                $('#Modal-vis-link').html("<i class='fa-solid fa-link m-3 fw-bold'></i>")
+                    
                 $('#Modal-vis-data').text("Dalle " + appuntamento.Inizio.substring(11) + " alle " + appuntamento.Fine.substring(11))
                 $('#Modal-vis-descrizione').text(appuntamento.Descrizione)
                 $('#Modal-vis-note').text(appuntamento.Note)
                 $('#Modal-vis-modifica').attr("onclick", "EditNote(" + appuntamento.id + ")")
                 $('#Modal-vis-modifica-appuntamento').attr("href", "Edit/" + appuntamento.id + "")
+
+                //Un po' di css per fare le modali a tema a seconda del tipo di appuntamento
+                $('#Modal-vis-content').css("border", "4px solid" + appuntamento.Colore)
+                $('#Modal-vis-modifica').css("background-color", appuntamento.Colore)
+                $('#Modal-vis-header').css("background-color", appuntamento.Colore3)
+                $('#Modal-vis-header').css("color", appuntamento.Colore)
+
+
+
+
 
                 //Faccio sparire il modale
                 $('#Modal-vis').modal('toggle');

@@ -182,6 +182,18 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Imgs\Logo\Logo.png" />
+    <Content Include="Content\Imgs\Logo\LogoIcon.png" />
+    <Content Include="Content\Imgs\Logo\LogoVerticale.png" />
+    <Content Include="Content\Imgs\Propic\default.png" />
+    <Content Include="Content\Imgs\Svgs\AggiungiAppuntamento.svg" />
+    <Content Include="Content\Imgs\Svgs\AggiungiCliente.svg" />
+    <Content Include="Content\Imgs\Svgs\Appuntamenti.svg" />
+    <Content Include="Content\Imgs\Svgs\Business.svg" />
+    <Content Include="Content\Imgs\Svgs\Calendario.svg" />
+    <Content Include="Content\Imgs\Svgs\Clienti.svg" />
+    <Content Include="Content\Imgs\Svgs\Login.svg" />
+    <Content Include="Content\Imgs\Svgs\Statistiche.svg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -584,15 +596,15 @@
     <Content Include="Views\Clienti\Edit.cshtml" />
     <Content Include="Views\Appuntamenti\Create.cshtml" />
     <Content Include="Views\Clienti\Index.cshtml" />
-    <Content Include="Views\Clienti\Appuntamenti.cshtml" />
     <Content Include="Views\Utenti\Index.cshtml" />
     <Content Include="Views\Utenti\Details.cshtml" />
     <Content Include="Views\Utenti\Create.cshtml" />
     <Content Include="Views\Utenti\Edit.cshtml" />
+    <Content Include="Views\Appuntamenti\CreateAppuntamento.cshtml" />
+    <Content Include="Views\Appuntamenti\AppuntamentiPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Imgs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

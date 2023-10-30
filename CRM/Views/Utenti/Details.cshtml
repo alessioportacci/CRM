@@ -4,87 +4,71 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="content-box">
 
-<div>
-    <h4>Utenti</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+    <div class="d-flex align-items-center">
+        <h2 class="d-inline-block">@Model.Username</h2>
+        <a href="@Url.Action( "Edit", new { id = Model.Id })" class="text-dark"> <i class="fa-solid fa-pencil m-2"></i></a>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+    <hr class="mt-4" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+    <div class="row row-cols-1 row-cols-md-2 align-items-center">
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+        <div class="text-center">
+            <img src="~/Content/Imgs/Propic/@Model.Propic" class="w-100 object-fit-contain" height="350" />
+        </div>
+        <div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <div class="row row-cols-1">
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <div>
+                    <span class="fw-bold d-block">
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </span>
+                    @Html.DisplayFor(model => model.Nome)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
+                <div>
+                    <span class="fw-bold d-block">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </span>
+                    @Html.DisplayFor(model => model.Email)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
+                <div>
+                    <span class="fw-bold d-block">
+                        @Html.DisplayNameFor(model => model.Telefono)
+                    </span>
+                    @Html.DisplayFor(model => model.Telefono)
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Propic)
-        </dt>
+                <div>
+                    <span class="fw-bold d-block">
+                        @Html.DisplayNameFor(model => model.LastOnline)
+                    </span>
+                    @Html.DisplayFor(model => model.LastOnline)
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Propic)
-        </dd>
+                <div>
+                    <span class="fw-bold d-block">
+                        @Html.DisplayNameFor(model => model.FkAzienda)
+                    </span>
+                    @Html.DisplayFor(model => model.Aziende.Nome)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastOnline)
-        </dt>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastOnline)
-        </dd>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Blind)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Blind)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FkAzienda)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FkAzienda)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<div class="content-box mb-3 mt-4 ">
+    <h2>Appuntamenti registrati da @Model.Nome:</h2>
+</div>
+
+@{ Html.RenderAction("AppuntamentiPartial", "Appuntamenti", new { idCliente = 0, idUtente = Model.Id }); }

@@ -29,5 +29,8 @@ namespace CRM.Models
 
             public string Colore { get; set;}
 
+            public string Colore2 {  get; set; }
+
+            public string Colore3 { get; set; }
     }
 }
