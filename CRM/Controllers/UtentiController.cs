@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace CRM.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class UtentiController : Controller
     {
         ModelDbContext db = new ModelDbContext();
