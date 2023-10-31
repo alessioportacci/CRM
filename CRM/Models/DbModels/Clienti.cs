@@ -20,7 +20,7 @@ namespace CRM.Models.DbModels
         public DateTime DataRegistrazione { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(200)]
         public string Nome { get; set; }
 
         [StringLength(200)]
@@ -31,8 +31,11 @@ namespace CRM.Models.DbModels
         public string Telefono { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Località")]
+
         public string Localita { get; set; }
 
+        [Display(Name = "Data di nascita")]
         public DateTime? DataNascita { get; set; }
 
         [StringLength(20)]

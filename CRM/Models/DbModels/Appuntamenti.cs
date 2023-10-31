@@ -11,19 +11,26 @@ namespace CRM.Models.DbModels
     {
         public int Id { get; set; }
 
+        [Display(Name = "Cliente")]
         public int FkCliente { get; set; }
 
+        [Display(Name = "Creatore")]
         public int FkUtente { get; set; }
 
+        [Display(Name = "Tipologia")]
         public int FkTipologia { get; set; }
 
+        [Display(Name = "Data Aggiunta")]
         public DateTime DataAggiunta { get; set; }
 
         [Column(TypeName = "smalldatetime")]
+        [Display(Name = "Data")]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Ora inizio")]
         public TimeSpan OraInizio { get; set; }
 
+        [Display(Name = "Ora fine")]
         public TimeSpan OraFine { get; set; }
 
         [Required]
@@ -33,8 +40,10 @@ namespace CRM.Models.DbModels
         [StringLength(500)]
         public string Note { get; set; }
 
+        [Display(Name = "Concluso?")]
         public bool Concluso { get; set; }
 
+        [Display(Name = "Visibile per tutti?")]
         public bool VisibilitaGlobale { get; set; }
 
         public virtual AppuntamentiTipologia AppuntamentiTipologia { get; set; }

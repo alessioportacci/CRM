@@ -150,6 +150,10 @@
     <Compile Include="Migrations\202310271625093_AggiuntiColoriTipologia.designer.cs">
       <DependentUpon>202310271625093_AggiuntiColoriTipologia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310311007181_LunghezzaNomeCliente.cs" />
+    <Compile Include="Migrations\202310311007181_LunghezzaNomeCliente.designer.cs">
+      <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppuntamentiCalendarioModel.cs" />
     <Compile Include="Models\DbModels\Appuntamenti.cs" />
@@ -624,6 +628,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202310271625093_AggiuntiColoriTipologia.resx">
       <DependentUpon>202310271625093_AggiuntiColoriTipologia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311007181_LunghezzaNomeCliente.resx">
+      <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

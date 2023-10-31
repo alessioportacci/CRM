@@ -24,6 +24,7 @@ namespace CRM.Models.DbModels
 
         [Required]
         [StringLength(20)]
+        [Display(Name = "Partita IVA")]
         public string PIVA { get; set; }
 
         [StringLength(50)]
