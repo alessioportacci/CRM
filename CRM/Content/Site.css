@@ -94,3 +94,35 @@ body {
     background-color:#086972 
 }
 
+
+
+/* Checkbox delle icone */
+
+.labl 
+{
+    display: block;
+}
+
+.labl > input 
+{   /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+
+.labl > input + i 
+{ 
+    /* DIV STYLES */
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 10px;
+    border-radius:5px
+}
+
+.labl > input:checked + i 
+{ 
+    /* (RADIO CHECKED) DIV STYLES */
+    background-color: #0869721A;
+    border: 1px solid #086972;
+}
+
+/* */

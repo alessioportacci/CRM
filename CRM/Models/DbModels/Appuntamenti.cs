@@ -48,6 +48,8 @@ namespace CRM.Models.DbModels
 
         public virtual AppuntamentiTipologia AppuntamentiTipologia { get; set; }
 
+        public virtual AppuntamentiTipologia AppuntamentiServizi { get; set; }
+
         public virtual Clienti Clienti { get; set; }
 
         public virtual Utenti Utenti { get; set; }

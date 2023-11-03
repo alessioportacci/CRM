@@ -20,6 +20,9 @@ namespace CRM.Models.DbModels
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Utenti> Utenti { get; set; }
         public virtual DbSet<UtentiRuoli> UtentiRuoli { get; set; }
+        public virtual DbSet<Servizi> Servizi { get; set; }
+        public virtual DbSet<AppuntamentiServizi> AppuntamentiServizi { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -71,6 +74,8 @@ namespace CRM.Models.DbModels
                 .WithRequired(e => e.Utenti)
                 .HasForeignKey(e => e.FkUtente)
                 .WillCascadeOnDelete(false);
+
+
         }
     }
 }

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CRM.Models.DbModels.Servizi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-box">
+
+
+    <div class="d-flex align-items-center">
+        <h2>Servizi</h2>
+        <div class="mx-3">
+            <a href="@Url.Action("Create")">
+                <i class="fa-solid fa-plus btn btn-crm"></i>
+            </a>
+        </div>
+    </div>
+
+
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Servizio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Icona)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Servizio)
+                    </td>
+                    <td>
+                        <i class="@item.Icona"></i>
+                    </td>
+                    <td>
+                        <a href="@Url.Action( "Edit", new { id = item.Id })" class="text-dark"> <i class="fa-solid fa-pencil"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+
+    @section scripts
+{
+        <script src="~/Scripts/MyScripts/LoadDataTable.js"></script>
+        <script>
+            LoadDataTable([1, 2])
+        </script>
+    }

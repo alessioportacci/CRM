@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AppuntamentiController.cs" />
     <Compile Include="Controllers\ClientiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ServiziController.cs" />
     <Compile Include="Controllers\UtentiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,14 +155,32 @@
     <Compile Include="Migrations\202310311007181_LunghezzaNomeCliente.designer.cs">
       <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310311414521_AggiuntaServizi.cs" />
+    <Compile Include="Migrations\202310311414521_AggiuntaServizi.designer.cs">
+      <DependentUpon>202310311414521_AggiuntaServizi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.cs" />
+    <Compile Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.designer.cs">
+      <DependentUpon>202310311424031_AggiuntaAppuntamentiServizi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311030834177_AddedIconeNomeServizi.cs" />
+    <Compile Include="Migrations\202311030834177_AddedIconeNomeServizi.designer.cs">
+      <DependentUpon>202311030834177_AddedIconeNomeServizi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031323093_Servizi.cs" />
+    <Compile Include="Migrations\202311031323093_Servizi.designer.cs">
+      <DependentUpon>202311031323093_Servizi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppuntamentiCalendarioModel.cs" />
     <Compile Include="Models\DbModels\Appuntamenti.cs" />
+    <Compile Include="Models\DbModels\AppuntamentiServizi.cs" />
     <Compile Include="Models\DbModels\AppuntamentiTipologia.cs" />
     <Compile Include="Models\DbModels\Aziende.cs" />
     <Compile Include="Models\DbModels\Clienti.cs" />
     <Compile Include="Models\DbModels\ModelDbContext.cs" />
     <Compile Include="Models\DbModels\Ruoli.cs" />
+    <Compile Include="Models\DbModels\Servizi.cs" />
     <Compile Include="Models\DbModels\sysdiagrams.cs" />
     <Compile Include="Models\DbModels\Utenti.cs" />
     <Compile Include="Models\DbModels\UtentiRuoli.cs" />
@@ -606,6 +625,10 @@
     <Content Include="Views\Utenti\Edit.cshtml" />
     <Content Include="Views\Appuntamenti\CreateAppuntamento.cshtml" />
     <Content Include="Views\Appuntamenti\AppuntamentiPartial.cshtml" />
+    <Content Include="Views\Servizi\Index.cshtml" />
+    <Content Include="Views\Servizi\Create.cshtml" />
+    <Content Include="Views\Servizi\Icone.cshtml" />
+    <Content Include="Views\Servizi\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -631,6 +654,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202310311007181_LunghezzaNomeCliente.resx">
       <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311414521_AggiuntaServizi.resx">
+      <DependentUpon>202310311414521_AggiuntaServizi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.resx">
+      <DependentUpon>202310311424031_AggiuntaAppuntamentiServizi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311030834177_AddedIconeNomeServizi.resx">
+      <DependentUpon>202311030834177_AddedIconeNomeServizi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031323093_Servizi.resx">
+      <DependentUpon>202311031323093_Servizi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
