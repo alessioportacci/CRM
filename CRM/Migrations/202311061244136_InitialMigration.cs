@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -25,39 +25,36 @@
                         VisibilitaGlobale = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AppuntamentiTipologia", t => t.FkTipologia)
                 .ForeignKey("dbo.Clienti", t => t.FkCliente)
                 .ForeignKey("dbo.Utenti", t => t.FkUtente)
+                .ForeignKey("dbo.AppuntamentiTipologia", t => t.FkTipologia)
                 .Index(t => t.FkCliente)
                 .Index(t => t.FkUtente)
                 .Index(t => t.FkTipologia);
             
             CreateTable(
-                "dbo.AppuntamentiTipologia",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        Tipologia = c.String(nullable: false, maxLength: 50),
-                        Colore = c.String(nullable: false, maxLength: 50),
-                    })
-                .PrimaryKey(t => t.id);
-            
-            CreateTable(
-                "dbo.Clienti",
+                "dbo.AppuntamentiServizi",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DataRegistrazione = c.DateTime(nullable: false),
-                        Nome = c.String(nullable: false, maxLength: 100),
-                        Email = c.String(maxLength: 200),
-                        Telefono = c.String(nullable: false, maxLength: 50),
-                        Localita = c.String(maxLength: 50),
-                        DataNascita = c.DateTime(),
-                        Genere = c.String(maxLength: 20),
-                        Note = c.String(),
+                        FkAppuntamento = c.Int(nullable: false),
+                        FkServizio = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Servizi", t => t.FkServizio)
+                .ForeignKey("dbo.Appuntamenti", t => t.FkAppuntamento)
+                .Index(t => t.FkAppuntamento)
+                .Index(t => t.FkServizio);
+            
+            CreateTable(
+                "dbo.Servizi",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Servizio = c.String(nullable: false, maxLength: 100),
+                        Icona = c.String(),
                         FkAzienda = c.Int(nullable: false),
-                        VisbilitaAziendale = c.Boolean(nullable: false),
-                })
+                    })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Aziende", t => t.FkAzienda)
                 .Index(t => t.FkAzienda);
@@ -67,7 +64,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Nome = c.String(nullable: false, maxLength: 100),
+                        Nome = c.String(nullable: false, maxLength: 100, fixedLength: true),
                         PIVA = c.String(nullable: false, maxLength: 20),
                         Regione = c.String(maxLength: 50),
                         Provincia = c.String(maxLength: 2),
@@ -77,6 +74,25 @@
                         Telefono = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Clienti",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DataRegistrazione = c.DateTime(nullable: false),
+                        Nome = c.String(nullable: false, maxLength: 200, fixedLength: true),
+                        Email = c.String(maxLength: 200),
+                        Telefono = c.String(nullable: false, maxLength: 50),
+                        Localita = c.String(maxLength: 50),
+                        DataNascita = c.DateTime(),
+                        Genere = c.String(maxLength: 20),
+                        Note = c.String(),
+                        FkAzienda = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Aziende", t => t.FkAzienda)
+                .Index(t => t.FkAzienda);
             
             CreateTable(
                 "dbo.Utenti",
@@ -121,6 +137,18 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.AppuntamentiTipologia",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        Tipologia = c.String(nullable: false, maxLength: 50),
+                        Colore = c.String(nullable: false, maxLength: 50),
+                        Colore2 = c.String(nullable: false, maxLength: 50),
+                        Colore3 = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
                 "dbo.sysdiagrams",
                 c => new
                     {
@@ -136,27 +164,35 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Appuntamenti", "FkTipologia", "dbo.AppuntamentiTipologia");
+            DropForeignKey("dbo.AppuntamentiServizi", "FkAppuntamento", "dbo.Appuntamenti");
             DropForeignKey("dbo.Utenti", "FkAzienda", "dbo.Aziende");
             DropForeignKey("dbo.UtentiRuoli", "FkUtente", "dbo.Utenti");
             DropForeignKey("dbo.UtentiRuoli", "FkRuolo", "dbo.Ruoli");
             DropForeignKey("dbo.Appuntamenti", "FkUtente", "dbo.Utenti");
+            DropForeignKey("dbo.Servizi", "FkAzienda", "dbo.Aziende");
             DropForeignKey("dbo.Clienti", "FkAzienda", "dbo.Aziende");
             DropForeignKey("dbo.Appuntamenti", "FkCliente", "dbo.Clienti");
-            DropForeignKey("dbo.Appuntamenti", "FkTipologia", "dbo.AppuntamentiTipologia");
+            DropForeignKey("dbo.AppuntamentiServizi", "FkServizio", "dbo.Servizi");
             DropIndex("dbo.UtentiRuoli", new[] { "FkRuolo" });
             DropIndex("dbo.UtentiRuoli", new[] { "FkUtente" });
             DropIndex("dbo.Utenti", new[] { "FkAzienda" });
             DropIndex("dbo.Clienti", new[] { "FkAzienda" });
+            DropIndex("dbo.Servizi", new[] { "FkAzienda" });
+            DropIndex("dbo.AppuntamentiServizi", new[] { "FkServizio" });
+            DropIndex("dbo.AppuntamentiServizi", new[] { "FkAppuntamento" });
             DropIndex("dbo.Appuntamenti", new[] { "FkTipologia" });
             DropIndex("dbo.Appuntamenti", new[] { "FkUtente" });
             DropIndex("dbo.Appuntamenti", new[] { "FkCliente" });
             DropTable("dbo.sysdiagrams");
+            DropTable("dbo.AppuntamentiTipologia");
             DropTable("dbo.Ruoli");
             DropTable("dbo.UtentiRuoli");
             DropTable("dbo.Utenti");
-            DropTable("dbo.Aziende");
             DropTable("dbo.Clienti");
-            DropTable("dbo.AppuntamentiTipologia");
+            DropTable("dbo.Aziende");
+            DropTable("dbo.Servizi");
+            DropTable("dbo.AppuntamentiServizi");
             DropTable("dbo.Appuntamenti");
         }
     }

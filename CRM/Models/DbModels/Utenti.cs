@@ -39,11 +39,11 @@ namespace CRM.Models.DbModels
         [StringLength(50)]
         public string Telefono { get; set; }
 
-        [StringLength(100)]
-        public string Propic { get; set; }
-
         [NotMapped]
         public HttpPostedFileBase FotoFile { get; set; }
+
+        [StringLength(100)]
+        public string Propic { get; set; }
 
         public DateTime? LastOnline { get; set; }
 

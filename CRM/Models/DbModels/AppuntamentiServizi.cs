@@ -1,4 +1,4 @@
-﻿namespace CRM.Models.DbModels
+namespace CRM.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -9,10 +9,14 @@
     [Table("AppuntamentiServizi")]
     public partial class AppuntamentiServizi
     {
-        [Key]
         public int Id { get; set; }
 
-        public virtual Servizi Servizi{ get; set; }
+        public int FkAppuntamento { get; set; }
 
+        public int FkServizio { get; set; }
+
+        public virtual Appuntamenti Appuntamenti { get; set; }
+
+        public virtual Servizi Servizi { get; set; }
     }
 }

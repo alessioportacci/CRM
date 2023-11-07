@@ -14,81 +14,87 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="row">
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.FkUtente)
-            @Html.HiddenFor(model => model.DataAggiunta)
-            @Html.HiddenFor(model => model.VisibilitaGlobale)
+<div class="row">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.FkUtente)
+    @Html.HiddenFor(model => model.DataAggiunta)
+    @Html.HiddenFor(model => model.VisibilitaGlobale)
 
 
-            <h5> Cliente e tipologia </h5>
+    <h5> Cliente e tipologia </h5>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.FkCliente, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DropDownListFor(model => model.FkCliente, new SelectList(ViewBag.Clienti, "Value", "Text"), "Seleziona un cliente...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FkCliente, "", new { @class = "text-danger" })
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.FkCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownListFor(model => model.FkCliente, new SelectList(ViewBag.Clienti, "Value", "Text"), "Seleziona un cliente...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FkCliente, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.FkTipologia, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DropDownListFor(model => model.FkTipologia, new SelectList(ViewBag.Tipologie, "Value", "Text"), "Seleziona una tipologia...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FkTipologia, "", new { @class = "text-danger" })
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.FkTipologia, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.DropDownListFor(model => model.FkTipologia, new SelectList(ViewBag.Tipologie, "Value", "Text"), "Seleziona una tipologia...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FkTipologia, "", new { @class = "text-danger" })
+    </div>
 
-            <hr class="mt-4" />
+    <hr class="mt-4" />
 
-            <h5> Date ed orario </h5>
-            <div class="col-12">
-                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
+    <h5> Date ed orario </h5>
+    <div class="col-12">
+        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.OraInizio, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.OraInizio, new { htmlAttributes = new { @class = "form-control", Type = "time" } })
-                @Html.ValidationMessageFor(model => model.OraInizio, "", new { @class = "text-danger" })
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.OraInizio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.OraInizio, new { htmlAttributes = new { @class = "form-control", Type = "time" } })
+        @Html.ValidationMessageFor(model => model.OraInizio, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.OraFine, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.OraFine, new { htmlAttributes = new { @class = "form-control", Type = "time" } })
-                @Html.ValidationMessageFor(model => model.OraFine, "", new { @class = "text-danger" })
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.OraFine, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.OraFine, new { htmlAttributes = new { @class = "form-control", Type = "time" } })
+        @Html.ValidationMessageFor(model => model.OraFine, "", new { @class = "text-danger" })
+    </div>
 
-            <hr class="mt-4" />
+    <hr class="mt-4" />
 
-            <h5>Informazioni e note</h5>
+    <h5>Informazioni e note</h5>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+    </div>
 
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.Concluso, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Concluso, new { htmlAttributes = new { role = "switch" } })
-                    @Html.ValidationMessageFor(model => model.Concluso, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6">
-                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", type = "textarea" } })
-                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
-            </div>
-
-            <hr class="mt-4" />
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Modifica" class="btn btn-crm" />
-                </div>
-            </div>
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.Concluso, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="checkbox">
+            @Html.EditorFor(model => model.Concluso, new { htmlAttributes = new { role = "switch" } })
+            @Html.ValidationMessageFor(model => model.Concluso, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", type = "textarea" } })
+        @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+    </div>
+
+    <hr class="mt-4" />
+
+    @foreach (var item in Model.AppuntamentiServizi)
+    {
+        <input type="radio" name="AppuntamentiServizi" value="@item.FkServizio" />
+        <p> @item.FkServizio </p>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Modifica" class="btn btn-crm" />
+        </div>
+    </div>
+</div>
     }
 
 </div>

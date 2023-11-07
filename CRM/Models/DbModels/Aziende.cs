@@ -14,6 +14,7 @@ namespace CRM.Models.DbModels
         {
             Clienti = new HashSet<Clienti>();
             Utenti = new HashSet<Utenti>();
+            Servizi = new HashSet<Servizi>();
         }
 
         public int Id { get; set; }
@@ -24,7 +25,6 @@ namespace CRM.Models.DbModels
 
         [Required]
         [StringLength(20)]
-        [Display(Name = "Partita IVA")]
         public string PIVA { get; set; }
 
         [StringLength(50)]
@@ -52,5 +52,8 @@ namespace CRM.Models.DbModels
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Utenti> Utenti { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Servizi> Servizi { get; set; }
     }
 }

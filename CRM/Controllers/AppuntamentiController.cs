@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace CRM.Controllers
@@ -253,7 +254,6 @@ namespace CRM.Controllers
                 return PartialView(db.Appuntamenti.Where(c => c.FkCliente == idCliente).OrderByDescending(a => a.Date));
             return PartialView(db.Appuntamenti.Where(c => c.FkUtente == idUtente).OrderByDescending(a => a.Date));
         }
-
 
     }
 }

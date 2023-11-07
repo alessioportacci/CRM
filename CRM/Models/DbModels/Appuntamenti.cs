@@ -9,28 +9,27 @@ namespace CRM.Models.DbModels
     [Table("Appuntamenti")]
     public partial class Appuntamenti
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Appuntamenti()
+        {
+            AppuntamentiServizi = new HashSet<AppuntamentiServizi>();
+        }
+
         public int Id { get; set; }
 
-        [Display(Name = "Cliente")]
         public int FkCliente { get; set; }
 
-        [Display(Name = "Creatore")]
         public int FkUtente { get; set; }
 
-        [Display(Name = "Tipologia")]
         public int FkTipologia { get; set; }
 
-        [Display(Name = "Data Aggiunta")]
         public DateTime DataAggiunta { get; set; }
 
         [Column(TypeName = "smalldatetime")]
-        [Display(Name = "Data")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Ora inizio")]
         public TimeSpan OraInizio { get; set; }
 
-        [Display(Name = "Ora fine")]
         public TimeSpan OraFine { get; set; }
 
         [Required]
@@ -40,15 +39,14 @@ namespace CRM.Models.DbModels
         [StringLength(500)]
         public string Note { get; set; }
 
-        [Display(Name = "Concluso?")]
         public bool Concluso { get; set; }
 
-        [Display(Name = "Visibile per tutti?")]
         public bool VisibilitaGlobale { get; set; }
 
-        public virtual AppuntamentiTipologia AppuntamentiTipologia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AppuntamentiServizi> AppuntamentiServizi { get; set; }
 
-        public virtual AppuntamentiTipologia AppuntamentiServizi { get; set; }
+        public virtual AppuntamentiTipologia AppuntamentiTipologia { get; set; }
 
         public virtual Clienti Clienti { get; set; }
 

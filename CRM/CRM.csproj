@@ -135,41 +135,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202310231301227_FirstMigration.cs" />
-    <Compile Include="Migrations\202310231301227_FirstMigration.designer.cs">
-      <DependentUpon>202310231301227_FirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310231451553_RimossaVisibilita.cs" />
-    <Compile Include="Migrations\202310231451553_RimossaVisibilita.designer.cs">
-      <DependentUpon>202310231451553_RimossaVisibilita.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310270850216_updateAziende.cs" />
-    <Compile Include="Migrations\202310270850216_updateAziende.designer.cs">
-      <DependentUpon>202310270850216_updateAziende.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310271625093_AggiuntiColoriTipologia.cs" />
-    <Compile Include="Migrations\202310271625093_AggiuntiColoriTipologia.designer.cs">
-      <DependentUpon>202310271625093_AggiuntiColoriTipologia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310311007181_LunghezzaNomeCliente.cs" />
-    <Compile Include="Migrations\202310311007181_LunghezzaNomeCliente.designer.cs">
-      <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310311414521_AggiuntaServizi.cs" />
-    <Compile Include="Migrations\202310311414521_AggiuntaServizi.designer.cs">
-      <DependentUpon>202310311414521_AggiuntaServizi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.cs" />
-    <Compile Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.designer.cs">
-      <DependentUpon>202310311424031_AggiuntaAppuntamentiServizi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202311030834177_AddedIconeNomeServizi.cs" />
-    <Compile Include="Migrations\202311030834177_AddedIconeNomeServizi.designer.cs">
-      <DependentUpon>202311030834177_AddedIconeNomeServizi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202311031323093_Servizi.cs" />
-    <Compile Include="Migrations\202311031323093_Servizi.designer.cs">
-      <DependentUpon>202311031323093_Servizi.cs</DependentUpon>
+    <Compile Include="Migrations\202311061244136_InitialMigration.cs" />
+    <Compile Include="Migrations\202311061244136_InitialMigration.designer.cs">
+      <DependentUpon>202311061244136_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppuntamentiCalendarioModel.cs" />
@@ -639,33 +607,8 @@
     <Content Include="Scripts\jquery-3.7.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202310231301227_FirstMigration.resx">
-      <DependentUpon>202310231301227_FirstMigration.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310231451553_RimossaVisibilita.resx">
-      <DependentUpon>202310231451553_RimossaVisibilita.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310270850216_updateAziende.resx">
-      <DependentUpon>202310270850216_updateAziende.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310271625093_AggiuntiColoriTipologia.resx">
-      <DependentUpon>202310271625093_AggiuntiColoriTipologia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310311007181_LunghezzaNomeCliente.resx">
-      <DependentUpon>202310311007181_LunghezzaNomeCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310311414521_AggiuntaServizi.resx">
-      <DependentUpon>202310311414521_AggiuntaServizi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310311424031_AggiuntaAppuntamentiServizi.resx">
-      <DependentUpon>202310311424031_AggiuntaAppuntamentiServizi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202311030834177_AddedIconeNomeServizi.resx">
-      <DependentUpon>202311030834177_AddedIconeNomeServizi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202311031323093_Servizi.resx">
-      <DependentUpon>202311031323093_Servizi.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202311061244136_InitialMigration.resx">
+      <DependentUpon>202311061244136_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
