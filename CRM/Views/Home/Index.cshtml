@@ -7,7 +7,7 @@
     <div class="row">
 
         <!--Icone -->
-        <div class="col-12 col-md-6 order-2 order-md-1">
+        <div class="col-12 col-md-6 order-3 order-md-1">
 
             <!-- Visualizza -->
             <div class="row row-cols-1 row-cols-md-2">
@@ -27,7 +27,7 @@
                     <a href="@Url.Action("Index", "Clienti")" class="text-black text-decoration-none">
                         <div class="content-box">
                             <h4 class="text-truncate"> Clienti </h4>
-                            <img  class="home-img" src="~/Content/Imgs/Svgs/Clienti.svg" />
+                            <img class="home-img" src="~/Content/Imgs/Svgs/Clienti.svg" />
                         </div>
                     </a>
                 </div>
@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- Cliente -->
-                <div  class="mb-2">
+                <div class="mb-2">
                     <a href="@Url.Action("Create", "Clienti")" class="text-black text-decoration-none">
                         <div class="content-box">
                             <h4 class="text-truncate">Aggiungi Cliente</h4>
@@ -60,9 +60,8 @@
 
         </div>
 
-
         <!-- Calendario -->
-        <div class="col-12 col-md-6 h-100  order-1 order-md-2 mb-2">
+        <div class="col-12 col-md-6 h-100 order-1 order-md-2 mb-2">
 
             <a href="@Url.Action("Calendar", "Appuntamenti")" class="text-black text-decoration-none">
                 <div class="content-box">
@@ -72,9 +71,68 @@
             </a>
 
         </div>
+
+        <!-- Chart -->
+        <div class="col-12 order-2 order-md-3 mb-2">
+            <div class="content-box">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
     </div>
 
 </div>
 
 
+@section scripts
+{
 
+    <script src="~/Scripts/ChartJs/dist/chart.umd.js"></script>
+
+    <script>
+          const ctx = document.getElementById('myChart');
+
+        new Chart(ctx,
+            {
+                type: 'bar',
+                data:
+                  {
+                    labels: ['Lundedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+                    datasets:
+                    [{
+                        label: 'Appuntamenti della settimana',
+                        data:
+                            [
+                                @ViewBag.Appuntamenti[0], //Lun
+                                @ViewBag.Appuntamenti[1], //Mar
+                                @ViewBag.Appuntamenti[2], //Mer
+                                @ViewBag.Appuntamenti[3], //Gio
+                                @ViewBag.Appuntamenti[4], //Ven
+                                @ViewBag.Appuntamenti[5]  //Sab
+                            ],
+                        backgroundColor: '#086972',
+                        borderWidth: 1
+                    },
+                    ],
+                },
+                options:
+                {
+                    scales:
+                    {
+                        y:
+                        {
+                            beginAtZero: true,
+                            ticks:
+                            {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+
+          console.log(@ViewBag.Appuntamenti[3])
+    </script>
+
+
+}

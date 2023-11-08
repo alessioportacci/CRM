@@ -18,7 +18,26 @@ namespace CRM.Controllers
 
 
         public ActionResult Index()
-        {
+        {            
+            //Mi prendo il lunedì corrente => Giorno di oggi - la differenza tra il giorno di oggi e il giorno di lunedì)
+            DateTime currentWeekStartDate = DateTime.Now.AddDays(-(DateTime.Now.DayOfWeek - DayOfWeek.Monday)).Date;
+            DateTime currentWeekEndDate = currentWeekStartDate.AddDays(6);
+            //Faccio l'interrogazione per prendermi gli appuntamenti della settimana, così non devo chiamare il db ogni volta
+            List<Appuntamenti> Appuntamentidb = db.Appuntamenti.Where(a => a.Date >= currentWeekStartDate && a.Date < currentWeekEndDate).ToList();
+
+            //Mi creo la lista di interi dei 6 giorni della settimana
+            List<int> GiorniAppuntamenti = new List<int>();
+            for (int i = 0; i < 6; i++)
+            {
+                DateTime date = currentWeekStartDate.AddDays(i);
+                List<Appuntamenti> appuntamenti = Appuntamentidb.Where(a => a.Date == date).ToList();
+                if (appuntamenti != null)
+                    GiorniAppuntamenti.Add(appuntamenti.Count);
+                else
+                    GiorniAppuntamenti.Add(0);
+            }
+            ViewBag.Appuntamenti = GiorniAppuntamenti;
+
             return View();
         }
 
