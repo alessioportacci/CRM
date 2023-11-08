@@ -561,6 +561,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyScripts\AppuntamentiCalendar.js" />
     <Content Include="Scripts\MyScripts\LoadDataTable.js" />
+    <Content Include="Scripts\MyScripts\SelectServizi.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

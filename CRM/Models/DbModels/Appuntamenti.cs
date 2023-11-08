@@ -46,6 +46,9 @@ namespace CRM.Models.DbModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AppuntamentiServizi> AppuntamentiServizi { get; set; }
 
+        [NotMapped]
+        public string Servizi { get; set; }
+
         public virtual AppuntamentiTipologia AppuntamentiTipologia { get; set; }
 
         public virtual Clienti Clienti { get; set; }

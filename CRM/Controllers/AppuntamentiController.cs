@@ -47,6 +47,7 @@ namespace CRM.Controllers
         {
             int idUtente = Int32.Parse(Session["IdUtente"].ToString());
 
+
             //Mi carico i clienti da usare nel modale della creazione
             List<SelectListItem> Clienti = new List<SelectListItem>();
             foreach (Clienti cliente in db.Utenti.Find(idUtente).Aziende.Clienti)
@@ -58,6 +59,7 @@ namespace CRM.Controllers
             foreach (AppuntamentiTipologia tipologia in db.AppuntamentiTipologia.ToList())
                 Tipologie.Add(new SelectListItem { Text = tipologia.Tipologia, Value = tipologia.id.ToString() });
             ViewBag.Tipologie = Tipologie;
+
 
             return PartialView();
         }
@@ -97,6 +99,10 @@ namespace CRM.Controllers
         /* Medoto per trasformare un Appuntamento in un AppuntamentiCalendarioModel; è necessario per evitare le
          * dipendenze circolari dovute dal lazy loading */
         {
+            List<ServiziCalendarioModel> Servizi = new List<ServiziCalendarioModel>();
+            foreach (AppuntamentiServizi servizio in appuntamento.AppuntamentiServizi)
+                Servizi.Add(new ServiziCalendarioModel { Nome = servizio.Servizi.Servizio, Icona = servizio.Servizi.Icona });
+
             return new AppuntamentiCalendarioModel
             {
                 id = appuntamento.Id,
@@ -111,6 +117,7 @@ namespace CRM.Controllers
                 Colore = appuntamento.AppuntamentiTipologia.Colore,
                 Colore2 = appuntamento.AppuntamentiTipologia.Colore2,
                 Colore3 = appuntamento.AppuntamentiTipologia.Colore3,
+                Servizi = Servizi
             };
         }
 
@@ -187,6 +194,9 @@ namespace CRM.Controllers
                 Tipologie.Add(new SelectListItem { Text = tipologia.Tipologia, Value = tipologia.id.ToString() });
             ViewBag.Tipologie = Tipologie;
 
+            int idAzienda = Int32.Parse(Session["IdAzienda"].ToString());
+            ViewBag.Servizi = db.Servizi.Where(s => s.FkAzienda == idAzienda).ToList();
+
             return View();
         }
 
@@ -198,6 +208,16 @@ namespace CRM.Controllers
             try
             {
                 db.Appuntamenti.Add(appuntamento);
+
+                foreach (var item in appuntamento.Servizi.Remove(appuntamento.Servizi.Length - 1).Split(','))
+                {
+                    db.AppuntamentiServizi.Add(new AppuntamentiServizi
+                    {
+                        FkAppuntamento = appuntamento.Id,
+                        FkServizio = Int32.Parse(item)
+                    });
+                }
+
                 db.SaveChanges();
             }
             catch { }
@@ -230,12 +250,37 @@ namespace CRM.Controllers
         {
             try
             {
+                //Aggiorno i servizi
+                AggiornaServizi(appuntamento.Servizi.Remove(appuntamento.Servizi.Length - 1), appuntamento.Id);
+
                 db.Entry(appuntamento).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Calendar");
             }
             catch { }
             return View();
+        }
+
+
+        private void AggiornaServizi(string nuoviServizi, int idAppuntamento)
+        {
+            List<AppuntamentiServizi> Servizi = db.AppuntamentiServizi
+                .Where(s => s.FkAppuntamento == idAppuntamento).ToList();
+
+            //Rimuovo i servizi
+            foreach (AppuntamentiServizi item in Servizi)
+                db.AppuntamentiServizi.Remove(item);
+
+            foreach(var item in nuoviServizi.Split(','))
+            {
+                db.AppuntamentiServizi.Add(new AppuntamentiServizi
+                                                { 
+                                                    FkAppuntamento = idAppuntamento, 
+                                                    FkServizio = Int32.Parse(item) 
+                                                });
+            }
+
+            db.SaveChanges();
         }
 
 

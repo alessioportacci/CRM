@@ -92,9 +92,8 @@ function LoadDetails(IdAppuntamento)
             {
                 console.log(appuntamento)
 
-                $('#Modal-vis-titolo').text(appuntamento.Tipologia + " con " + appuntamento.NomeCliente)
-                $('#Modal-vis-link').html("<i class='fa-solid fa-link m-3 fw-bold'></i>")
-                    
+                $("#Modal-vis-titolo").text(appuntamento.Tipologia + " con " + appuntamento.NomeCliente)
+
                 $('#Modal-vis-data').text("Dalle " + appuntamento.Inizio.substring(11) + " alle " + appuntamento.Fine.substring(11))
                 $('#Modal-vis-descrizione').text(appuntamento.Descrizione)
                 $('#Modal-vis-note').text(appuntamento.Note)
@@ -107,9 +106,16 @@ function LoadDetails(IdAppuntamento)
                 $('#Modal-vis-header').css("background-color", appuntamento.Colore3)
                 $('#Modal-vis-header').css("color", appuntamento.Colore)
 
-
-
-
+                //Carico i servizi
+                $('#Modal-vis-servizi').html("")
+                let serviziHTML = ""
+                appuntamento.Servizi.forEach(servizio => {
+                    serviziHTML += `<div> 
+                                        <i class="${servizio.Icona}"></i> 
+                                        <span> ${servizio.Nome} </span>
+                                    </div>`
+                })
+                $('#Modal-vis-servizi').html(serviziHTML)
 
                 //Faccio sparire il modale
                 $('#Modal-vis').modal('toggle');

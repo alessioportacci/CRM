@@ -78,6 +78,26 @@
 
             <hr class="mt-4" />
 
+            <h5>Servizi</h5>
+
+            @Html.HiddenFor(model => model.Servizi, new { htmlAttributes = new { id = "Servizi" } })
+            <div class="row">
+                @foreach (var item in ViewBag.Servizi)
+                {
+                    <div class="col-12 col-md-3 mx-2" title="@item.Servizio">
+                        <label class="labl d-flex align-items-center">
+                            <input type="checkbox" value="@item.Id" onchange="getSelected()" />
+                            <i class="@item.Icona"></i>
+                            <span class="mx-1">
+                                @item.Servizio
+                            </span>
+                        </label>
+                    </div>
+                }
+            </div>
+
+            <hr class="mt-4" />
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -88,3 +108,8 @@
     }
 
 </div>
+
+@section scripts
+{
+    <script src="~/Scripts/MyScripts/SelectServizi.js"></script>
+}

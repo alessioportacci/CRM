@@ -32,5 +32,13 @@ namespace CRM.Models
             public string Colore2 {  get; set; }
 
             public string Colore3 { get; set; }
+
+            public List<ServiziCalendarioModel> Servizi { get; set; }
+    }
+
+    public class ServiziCalendarioModel
+    {
+        public string Nome { get; set; }
+        public string Icona { get; set; }
     }
 }
