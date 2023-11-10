@@ -1,0 +1,93 @@
+﻿@model CRM.Models.StatisticheModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-box">
+    <h2>Statistiche</h2>
+    <hr />
+
+    <div class="row">
+
+        <h5> Data e visualizzazione</h5>
+
+        <div class="col-12 col-md-6">
+            @Html.Label("DataDal", "Data dal", new { @class = "control-label col-md-2 text-truncate" })
+            @Html.TextBox("DataDal", DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control" })
+        </div>
+
+        <div class="col-12 col-md-6">
+            @Html.Label("DataAl", "Data al", new { @class = "control-label col-md-2 text-truncate" })
+            @Html.TextBox("DataAl", DateTime.Now.ToString("yyyy-MM-dd"), new { @type = "date", @class = "form-control" })
+        </div>
+
+
+        <div class="col-12 mt-2">
+            <input class="form-check-input" type="radio" id="giorn" name="Visualizzazione" value="1">
+            <label for="giorn">Giornaliero</label><br>
+        </div>
+        <div class="col-12">
+            <input class="form-check-input" type="radio" id="sett" name="Visualizzazione" value="2" checked>
+            <label for="sett">Settimanale</label><br>
+        </div>
+        <div class="col-12">
+            <input class="form-check-input" type="radio" id="ann" name="Visualizzazione" value="3">
+            <label for="ann">Annuale</label><br>
+        </div>
+
+        <hr class="mt-4" />
+
+        <h5> Dipendente o cliente</h5>
+
+        <div class="col-12 col-md-6">
+            @Html.LabelFor(model => model.Utenti, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Utenti, new SelectList(Model.Utenti, "Value", "Text"), "Seleziona un utente", new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.Utenti, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-12 col-md-6">
+            @Html.LabelFor(model => model.Clienti, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Clienti, new SelectList(Model.Clienti, "Value", "Text"), "Seleziona un cliente", new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.Clienti, "", new { @class = "text-danger" })
+        </div>
+
+
+        <hr class="mt-4" />
+
+        <h5> Servizio o tipologia di appuntamento</h5>
+
+        <div class="col-12 col-md-6">
+            @Html.LabelFor(model => model.Servizi, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Servizi, new SelectList(Model.Utenti, "Value", "Text"), "Seleziona un servizio", new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.Servizi, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-12 col-md-6">
+            @Html.LabelFor(model => model.Tipologie, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Tipologie, new SelectList(Model.Clienti, "Value", "Text"), "Seleziona una tipologia", new { @class = "form-select" })
+            @Html.ValidationMessageFor(model => model.Tipologie, "", new { @class = "text-danger" })
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        $('#Utenti').change(function ()
+        {
+            $('#Clienti').prop('selectedIndex', 0);
+        });
+
+        $('#Clienti').change(function () {
+            $('#Utenti').prop('selectedIndex', 0);
+        });
+
+    </script>
+
+}

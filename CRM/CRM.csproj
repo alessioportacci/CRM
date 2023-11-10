@@ -131,6 +131,7 @@
     <Compile Include="Controllers\ClientiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServiziController.cs" />
+    <Compile Include="Controllers\StatisticheController.cs" />
     <Compile Include="Controllers\UtentiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -154,6 +155,7 @@
     <Compile Include="Models\DbModels\UtentiRuoli.cs" />
     <Compile Include="Models\DropDownModel.cs" />
     <Compile Include="Models\RoleManager.cs" />
+    <Compile Include="Models\StatisticheModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -621,9 +623,11 @@
     <Content Include="Views\Servizi\Create.cshtml" />
     <Content Include="Views\Servizi\Icone.cshtml" />
     <Content Include="Views\Servizi\Edit.cshtml" />
+    <Content Include="Views\Statistiche\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\StatisticheModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
