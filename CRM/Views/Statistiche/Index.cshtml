@@ -69,7 +69,10 @@
             @Html.ValidationMessageFor(model => model.Tipologie, "", new { @class = "text-danger" })
         </div>
 
-
+        <hr class="mt-4" />
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Ottieni statistiche" id="search" class="btn btn-crm" />
+            </div>
     </div>
 
 </div>
@@ -87,6 +90,34 @@
         $('#Clienti').change(function () {
             $('#Utenti').prop('selectedIndex', 0);
         });
+
+
+        $('#search').click(function ()
+        {
+            let dataDal = $("#DataDal").val()
+            let dataAl = $("#DataAl").val()
+
+            let visualizzazione = $('input[name=Visualizzazione]:checked').val()
+
+            let utenti = $("#Utenti").val()
+            let clienti = $("#Clienti").val()
+
+            let servizi = $("#Servizi").val()
+            let tipologie = $("#Tipologie").val()
+
+            alert("ciao")
+
+            console.log(
+                        "DataDal", dataDal,
+                        "\nDataAl", dataAl,
+                        "\nVisualizzazione", visualizzazione,
+                        "\nUtenti", utenti,
+                        "\nclienti", clienti,
+                        "\nservizi", servizi,
+                        "\ntipologie", tipologie)
+
+
+        })
 
     </script>
 

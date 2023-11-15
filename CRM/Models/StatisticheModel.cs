@@ -16,5 +16,13 @@ namespace CRM.Models
         public List<SelectListItem> Servizi { get; set; }
 
         public List<SelectListItem> Tipologie {  get; set; }
+
     }
+
+    public class StatisticheOutputModel
+    {
+
+    }
+
+
 }

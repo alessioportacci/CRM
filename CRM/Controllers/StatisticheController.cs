@@ -3,6 +3,7 @@ using CRM.Models.DbModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
 
@@ -45,6 +46,45 @@ namespace CRM.Controllers
                             Servizi = Servizi,
                             Tipologie = Tipologie
                         });
+        }
+
+
+
+        public List<Appuntamenti> getAppuntamentiByData(List<Appuntamenti> Appuntamenti, DateTime dataDal, DateTime dataAl)
+        {
+            dataDal = dataDal.Date;
+            dataAl = dataAl.Date;
+            int IdAzienda = Int32.Parse(Session["IdAzienda"].ToString());
+
+            if(Appuntamenti == null)
+                return db.Appuntamenti.Where(app => app.Utenti.FkAzienda == IdAzienda &&
+                                                    app.Date >= dataDal && 
+                                                    app.Date <= dataAl).ToList();
+
+            return Appuntamenti.Where(app => app.Date >= dataDal &&
+                                             app.Date <= dataAl).ToList();
+        }
+
+        public List<Appuntamenti> getAppuntamentiByUtente(List<Appuntamenti> Appuntamenti, int idUtente)
+        {
+            int idAzienda = Int32.Parse(Session["IdAzienda"].ToString());
+
+            if (Appuntamenti == null)
+                return db.Appuntamenti.Where(app => app.Clienti.FkAzienda == idAzienda &&
+                                                    app.FkUtente == idUtente).ToList();
+
+            return Appuntamenti.Where(app => app.FkUtente == idUtente).ToList();
+        }
+
+        public List<Appuntamenti> getAppuntamentiByCliente(List<Appuntamenti> Appuntamenti, int idCliente)
+        {
+            int idAzienda = Int32.Parse(Session["IdAzienda"].ToString());
+
+            if (Appuntamenti == null)
+                return db.Appuntamenti.Where(app => app.Clienti.FkAzienda == idAzienda &&
+                                                    app.FkCliente == idCliente).ToList();
+
+            return Appuntamenti.Where(app => app.FkCliente == idCliente).ToList();
         }
 
     }
