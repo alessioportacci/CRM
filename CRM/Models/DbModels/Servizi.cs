@@ -19,6 +19,7 @@ namespace CRM.Models.DbModels
 
         [Required]
         [StringLength(100)]
+        [Display(Name = "Nome")]
         public string Servizio { get; set; }
 
         public string Icona { get; set; }

@@ -17,19 +17,25 @@ namespace CRM.Models.DbModels
 
         public int Id { get; set; }
 
+        [Display(Name = "Cliente")]
         public int FkCliente { get; set; }
 
+        [Display(Name = "Utente")]
         public int FkUtente { get; set; }
 
+        [Display(Name = "Tipologia")]
         public int FkTipologia { get; set; }
 
         public DateTime DataAggiunta { get; set; }
 
         [Column(TypeName = "smalldatetime")]
+        [Display(Name = "Data")]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Ora inizio")]
         public TimeSpan OraInizio { get; set; }
 
+        [Display(Name = "Ora fine")]
         public TimeSpan OraFine { get; set; }
 
         [Required]
@@ -41,6 +47,7 @@ namespace CRM.Models.DbModels
 
         public bool Concluso { get; set; }
 
+        [Display(Name = "Per tutti?")]
         public bool VisibilitaGlobale { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

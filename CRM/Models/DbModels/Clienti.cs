@@ -31,6 +31,7 @@ namespace CRM.Models.DbModels
         public string Telefono { get; set; }
 
         [StringLength(50)]
+        [Display(Name = "Località")]
         public string Localita { get; set; }
 
         public DateTime? DataNascita { get; set; }
