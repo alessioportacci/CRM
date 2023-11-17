@@ -21,8 +21,19 @@ namespace CRM.Models
 
     public class StatisticheOutputModel
     {
-
+        public List<int> Valori { get; set; }
+        public List<string> Etichette { get; set; }
     }
 
+    public class StatisticheFilterModel
+    {
+        public DateTime DataDal { get; set; }
+        public DateTime DataAl { get; set; }
+        public int visualizzazione { get; set; }
+        public int utenti { get; set; }
+        public int clienti { get; set; }
+        public int servizi { get; set; }
+        public int tipologie { get; set; }
+    }
 
 }

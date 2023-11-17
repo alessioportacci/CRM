@@ -209,14 +209,15 @@ namespace CRM.Controllers
             {
                 db.Appuntamenti.Add(appuntamento);
 
-                foreach (var item in appuntamento.Servizi.Remove(appuntamento.Servizi.Length - 1).Split(','))
-                {
-                    db.AppuntamentiServizi.Add(new AppuntamentiServizi
+                if(appuntamento.Servizi != "" && appuntamento.Servizi != null)
+                    foreach (var item in appuntamento.Servizi.Remove(appuntamento.Servizi.Length - 1).Split(','))
                     {
-                        FkAppuntamento = appuntamento.Id,
-                        FkServizio = Int32.Parse(item)
-                    });
-                }
+                        db.AppuntamentiServizi.Add(new AppuntamentiServizi
+                        {
+                            FkAppuntamento = appuntamento.Id,
+                            FkServizio = Int32.Parse(item)
+                        });
+                    }
 
                 db.SaveChanges();
             }

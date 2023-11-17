@@ -18,6 +18,10 @@ namespace CRM.Controllers
         {
             int IdAzienda = Int32.Parse(Session["IdAzienda"].ToString());
 
+            elaboraStatisticheGiornaliero(db.Appuntamenti.ToList());
+            elaboraStatisticheMensile(db.Appuntamenti.ToList());
+
+
             //Utenti
             List<SelectListItem> Utenti = new List<SelectListItem>();
             foreach (Utenti utente in db.Utenti.Where(u => u.FkAzienda == IdAzienda).ToList())
@@ -48,6 +52,36 @@ namespace CRM.Controllers
                         });
         }
 
+
+        public JsonResult getStatistiche(StatisticheFilterModel filtri)
+        {
+            List<Appuntamenti> app = db.Appuntamenti.ToList();
+            StatisticheOutputModel statistiche = new StatisticheOutputModel();
+
+            //Data
+            app = getAppuntamentiByData(app, filtri.DataDal, filtri.DataAl);
+            //Utenti
+            if (filtri.utenti != 0)
+                app = getAppuntamentiByUtente(app, filtri.utenti);
+            //Clienti
+            if (filtri.clienti != 0)
+                app = getAppuntamentiByCliente(app, filtri.clienti);
+
+            switch(filtri.visualizzazione)
+            {
+                case 1:
+                    statistiche = elaboraStatisticheGiornaliero(app);
+                    break;
+                case 2:
+                    statistiche = elaboraStatisticheMensile(app);
+                    break; 
+                case 3:
+                    statistiche = elaboraStatisticheAnnuale(app);
+                    break;
+            }
+
+            return Json(statistiche, JsonRequestBehavior.AllowGet);
+        }
 
 
         public List<Appuntamenti> getAppuntamentiByData(List<Appuntamenti> Appuntamenti, DateTime dataDal, DateTime dataAl)
@@ -85,6 +119,85 @@ namespace CRM.Controllers
                                                     app.FkCliente == idCliente).ToList();
 
             return Appuntamenti.Where(app => app.FkCliente == idCliente).ToList();
+        }
+
+
+        public StatisticheOutputModel elaboraStatisticheGiornaliero(List<Appuntamenti> Appuntamenti)
+        {
+            List<int> Valori = new List<int>();
+            List<string> Etichette = new List<string>();
+
+            foreach(Appuntamenti appuntamento in Appuntamenti.OrderBy(a => a.Date))
+            {
+                string etichetta = appuntamento.Date.Date.ToShortDateString();
+                //Se c'e gia l'etichetta, aggiorno il numero di appuntamenti
+                if(Etichette.Contains(etichetta))
+                    Valori[Valori.Count - 1]++;
+                //Se non c'e, la appendo in fondo alle due liste
+                else
+                {
+                    Etichette.Add(etichetta);
+                    Valori.Add(1);
+                }
+            }
+
+            return new StatisticheOutputModel()
+                        { 
+                            Etichette = Etichette,
+                            Valori = Valori
+                        };
+        }
+
+        public StatisticheOutputModel elaboraStatisticheMensile(List<Appuntamenti> Appuntamenti)
+        {
+            List<int> Valori = new List<int>();
+            List<string> Etichette = new List<string>();
+
+            foreach (Appuntamenti appuntamento in Appuntamenti.OrderBy(a => a.Date))
+            {
+                string etichetta = string.Concat(appuntamento.Date.ToString("MMMM") + " - " + appuntamento.Date.Year);
+                //Se c'e gia l'etichetta, aggiorno il numero di appuntamenti
+                if (Etichette.Contains(etichetta))
+                    Valori[Valori.Count - 1]++;
+                //Se non c'e, la appendo in fondo alle due liste
+                else
+                {
+                    Etichette.Add(etichetta);
+                    Valori.Add(1);
+                }
+            }
+
+            return new StatisticheOutputModel()
+            {
+                Etichette = Etichette,
+                Valori = Valori
+            };
+        }
+
+        public StatisticheOutputModel elaboraStatisticheAnnuale(List<Appuntamenti> Appuntamenti)
+        {
+            List<int> Valori = new List<int>();
+            List<string> Etichette = new List<string>();
+
+            foreach (Appuntamenti appuntamento in Appuntamenti.OrderBy(a => a.Date))
+            {
+                string etichetta = string.Concat(appuntamento.Date.Year);
+                //Se c'e gia l'etichetta, aggiorno il numero di appuntamenti
+                if (Etichette.Contains(etichetta))
+                    Valori[Valori.Count - 1]++;
+                //Se non c'e, la appendo in fondo alle due liste
+                else
+                {
+                    Etichette.Add(etichetta);
+                    Valori.Add(1);
+                }
+            }
+
+            return new StatisticheOutputModel()
+            {
+                Etichette = Etichette,
+                Valori = Valori
+            };
         }
 
     }
