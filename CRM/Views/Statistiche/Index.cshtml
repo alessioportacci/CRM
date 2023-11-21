@@ -70,6 +70,25 @@
         </div>
         *@
 
+
+        <hr class="mt-4" />
+
+        <h5> Visualizzazione</h5>
+
+        <div class="col-12 mt-2">
+            <input class="form-check-input" type="radio" id="bar" name="Grafico" value="bar" checked>
+            <label for="bar">Grafico semplice</label><br>
+        </div>
+        <div class="col-12">
+            <input class="form-check-input" type="radio" id="line" name="Grafico" value="line">
+            <label for="line">Grafico lineare</label><br>
+        </div>
+        <div class="col-12">
+            <input class="form-check-input" type="radio" id="radar" name="Grafico" value="radar">
+            <label for="radar">Grafico radar</label><br>
+        </div>
+
+
         <hr class="mt-4" />
         <div class="col-md-offset-2 col-md-10">
             <input type="button" value="Ottieni statistiche" id="search" class="btn btn-crm" />
@@ -106,7 +125,7 @@
             const ctx = document.getElementById('myChart');
             new Chart(ctx,
                 {
-                    type: 'line',
+                    type: Appuntamenti.Grafico,
                     data:
                     {
                         labels: Appuntamenti.Etichette,
@@ -148,7 +167,8 @@
                 utenti: $("#Utenti").val(),
                 clienti: $("#Clienti").val(),
                 servizi: $("#Servizi").val(),
-                tipologie: $("#Tipologie").val()
+                tipologie: $("#Tipologie").val(),
+                grafico: $('input[name=Grafico]:checked').val()
             }
 
             $.ajax

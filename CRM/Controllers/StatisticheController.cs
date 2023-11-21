@@ -80,6 +80,7 @@ namespace CRM.Controllers
                     break;
             }
 
+            statistiche.Grafico = filtri.grafico;
             return Json(statistiche, JsonRequestBehavior.AllowGet);
         }
 

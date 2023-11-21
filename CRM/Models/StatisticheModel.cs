@@ -23,6 +23,7 @@ namespace CRM.Models
     {
         public List<int> Valori { get; set; }
         public List<string> Etichette { get; set; }
+        public string Grafico { get; set; }
     }
 
     public class StatisticheFilterModel
@@ -34,6 +35,7 @@ namespace CRM.Models
         public int clienti { get; set; }
         public int servizi { get; set; }
         public int tipologie { get; set; }
+        public string grafico { get; set; }
     }
 
 }
