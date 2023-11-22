@@ -24,26 +24,33 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Calendario", "Calendar", "Appuntamenti", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Appuntamenti", "Index", "Appuntamenti", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Aziende", "Index", "Aziende", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Clienti", "Index", "Clienti", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Servizi", "Index", "Servizi", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-
                 @if (User.Identity.IsAuthenticated)
                 {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Calendario", "Calendar", "Appuntamenti", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Appuntamenti", "Index", "Appuntamenti", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Aziende", "Index", "Aziende", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Clienti", "Index", "Clienti", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Utenti", "Index", "Utenti", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Servizi", "Index", "Servizi", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Statistiche", "Index", "Statistiche", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+
+
                     <span class="navbar-text rounded-pill py-auto py-md-0 border bg-crm text-white">
                         <span class="mx-3">@User.Identity.Name </span>
                         <img src="~/Content/Imgs/Propic/@Session["Img"].ToString()" height="40" width="40" class="rounded-circle object-fit-cover" />
                     </span>
                 }
+                else
+                {
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                }
 
-            </div>
+                </div>
         </div>
     </nav>
     <div class="container body-content">
